@@ -2,7 +2,6 @@ import numpy as np
 import os
 
 from generator import *
-from data_loader import pre_emph
 
 
 def de_emph(y, coeff=0.95):
@@ -15,49 +14,44 @@ def de_emph(y, coeff=0.95):
     return x
 
 
-class Model(object):
-    def __init__(self, name='BaseModel'):
-        self.name = name
-
-    def load(self, meta_path):
-        if not os.path.exists(meta_path):
-            raise ValueError("The meta path doen't exist")
-        self.saver = tf.train.import_meta_graph(meta_path)
-        model_path = ''.join(meta_path.split('.')[:-1])
-        self.saver.restore(self.sess, model_path)
-
-
-class SEGAN(Model):
+class SEGAN:
     """ Speech Enhancement Generative Adversarial Network """
 
-    def __init__(self, sess, noisybatch, devices, g_type, name='SEGAN'):
-        super(SEGAN, self).__init__(name)
+    def __init__(self, sess, model_type, noisybatch, devices, depth=1, iterations=1):
         self.sess = sess
         self.devices = devices
         self.noisybatch = noisybatch
 
         # cleaning args
         self.canvas_size = 2**14
-
         self.batch_size = 1
-        self.gtruth_noisy = []
+
+        self.depth = depth
 
         # args for generator
-        self.deconv_type = 'deconv' # type of deconv
+        self.deconv_type = 'deconv'
         self.bias_downconv = True
         self.bias_deconv = True
-        self.g_dilated_blocks = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512] # dilation factors per layer
-        self.g_enc_depths = [16, 32, 32, 64, 64, 128, 128, 256, 256, 512, 1024] # num fmaps for AutoEncoder SEGAN (v1)
 
-        if g_type == 'ae':
-            self.generator = AEGenerator(self)
-        elif g_type == 'dwave':
-            self.generator = Generator(self)
-        else:
-            raise ValueError('Unrecognized G type {}'.format(g_type))
+        self.generator = Generator(self)
 
         noisybatch = tf.expand_dims(noisybatch, -1)
-        self.Gs = self.generator(noisybatch, is_ref=False)
+
+        if model_type in ['segan', 'dsegan']:
+            self.Gs = self.generator(noisybatch)
+        else:
+            input = noisybatch
+            for i in range(iteration):
+                G = self.generator(input)
+                input = G
+            self.Gs = G
+
+    def load(self, meta_path):
+        if not os.path.exists(meta_path):
+            raise ValueError("The meta path does not exist")
+        self.saver = tf.train.import_meta_graph(meta_path)
+        model_path = ''.join(meta_path.split('.')[:-1])
+        self.saver.restore(self.sess, model_path)
 
     def clean(self, x, preemph):
         """ clean a utterance x
@@ -71,14 +65,14 @@ class SEGAN(Model):
             else:
                 length = self.canvas_size
                 pad = 0
-            x_ = np.zeros((1, self.canvas_size))
+            x_ = np.zeros((self.batch_size, self.canvas_size))
             if pad > 0:
                 x_[0] = np.concatenate((x[beg_i:beg_i + length], np.zeros(pad)))
             else:
                 x_[0] = x[beg_i:beg_i + length]
 
             fdict = {self.noisybatch: x_}
-            canvas_w = self.sess.run(self.Gs, feed_dict=fdict)[0]
+            canvas_w = self.sess.run(self.Gs, feed_dict=fdict)
             canvas_w = canvas_w.reshape((self.canvas_size))
             if pad > 0:
                 canvas_w = canvas_w[:-pad]

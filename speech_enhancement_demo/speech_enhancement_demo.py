@@ -24,6 +24,10 @@ def build_argparser():
                            "deep SEGAN, 'isegan' for iterated SEGAN or 'segan' for SEGAN.")
     args.add_argument('-o', '--output', type=str, required=True,
                       help="Required. The output file in .wav format, where the clean audio file will be stored.")
+    args.add_argument('-depth', type=int, default=1,
+                      help='Optional. The depth of DSEGAN.')
+    args.add_argument('-iter', '--iterations', type=int, default=1,
+                      help='Optional. The number of iterations of ISEGAN.')
     args.add_argument('-p', '--preemph', type=float, default=0.95,
                       help="Optional. The preemph coeff.")
     args.add_argument("-d", "--device", type=str, default="CPU",
@@ -124,12 +128,11 @@ def main(_):
                                              batch_size=1, num_threads=2, capacity=1000 + 3 * 1,
                                              min_after_dequeue=1000,
                                              name='wav_and_noisy')
-
+        if args.depth < 1:
+            raise ValueError('The depth cannot be negative!')
+            
         print('Loading model weights...')
-        if args.at == 'segan':
-            model = SEGAN(sess, noisybatch, udevices, 'ae')
-        else:
-            raise ValueError('Now only segan generator is supported')
+        model = SEGAN(sess, args.at, noisybatch, args.depth, args.iterations, udevices)
         model.load(args.model)
 
         tf.initialize_all_variables().run()
