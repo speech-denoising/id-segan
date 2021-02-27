@@ -9,6 +9,7 @@ from data_loader import *
 from model import *
 
 from scipy.io import wavfile
+from librosa import load
 
 
 def build_argparser():
@@ -137,11 +138,7 @@ def main(_):
 
         tf.initialize_all_variables().run()
 
-        fm, wav_data = wavfile.read(args.input)
-        if fm != 16000:
-            # Здесь нужно вызвать препроцессинг
-            raise ValueError('16kHz required! Test file is different')
-        wave = (2. / 65535.) * (wav_data.astype(np.float32) - 32767) + 1.
+        wave, fm = load(args.input, sr=16000)
 
         if preemph > 0:
             x_pholder, preemph_op = pre_emph_test(preemph, wave.shape[0])
