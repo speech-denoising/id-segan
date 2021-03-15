@@ -1,19 +1,19 @@
 # Speech enhancement demo
 
 Example of running:
-1. DSEGAN:
+DSEGAN:
 
 `
 python "speech_enhancement_demo/speech_enhancement_demo.py" -at dsegan -m "D:/DSEGAN-2/SEGAN-97000.meta" -i "data/noisy_signal.wav" -o "data/clean_signal_dsegan.wav"
 `
 
-1. ISEGAN:
+ISEGAN:
 
 `
 python "speech_enhancement_demo/speech_enhancement_demo.py" -at isegan -m "D:/DSEGAN-2/SEGAN-97000.meta" -i "data/noisy_signal.wav" -o "data/clean_signal_isegan.wav"
 `
 
-1. SEGAN:
+SEGAN:
 
 `
 python "speech_enhancement_demo/speech_enhancement_demo.py" -at segan -m "D:/DSEGAN-2/SEGAN-97000.meta" -i "data/noisy_signal.wav" -o "data/clean_signal_segan.wav"
