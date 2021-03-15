@@ -1,17 +1,19 @@
 # Speech enhancement demo
 
-## Example of running
+Demo application for speech denoising algorithm.
+
+## Running
 
 DSEGAN:
 
 `
-python "speech_enhancement_demo/speech_enhancement_demo.py" -at dsegan -m "D:/DSEGAN-2/SEGAN-97000.meta" -i "data/noisy_signal.wav" -o "data/clean_signal_dsegan.wav"
+python "speech_enhancement_demo/speech_enhancement_demo.py" -at dsegan -m "D:/DSEGAN-2/SEGAN-97000.meta" -i "data/noisy_signal.wav" -o "data/clean_signal_dsegan.wav" -depth 2
 `
 
 ISEGAN:
 
 `
-python "speech_enhancement_demo/speech_enhancement_demo.py" -at isegan -m "D:/DSEGAN-2/SEGAN-97000.meta" -i "data/noisy_signal.wav" -o "data/clean_signal_isegan.wav"
+python "speech_enhancement_demo/speech_enhancement_demo.py" -at isegan -m "D:/DSEGAN-2/SEGAN-97000.meta" -i "data/noisy_signal.wav" -o "data/clean_signal_isegan.wav" -iter 2
 `
 
 SEGAN:
@@ -36,6 +38,17 @@ python "speech_enhancement_demo/speech_enhancement_demo.py" -at segan -m "D:/DSE
 
 
 ## About
+
+The demo produces a noise-free audio recording as an output file. 
+
+
+Preprocessing:
+
+Isegan, dsegan and segan models accept audio recording in .wav format with a sampling rate of 16kHz. Our demo accepts audio recording at any sample rate as input. File resampling up to 16kHz is performed using librosa package tools. The librosa.load function loads the audio file at the required sampling rate and performs normalization. Therefore, we removed a part of the code with normalization as unnecessary.
+
+Postprocessing:
+
+We have noticed that the output demo file is cleared of noise, but is very quiet, which made it difficult to assess the quality of the cleansing. In the postprocessing part, the audio volume is increased using the python package Pydub (https://github.com/jiaaro/pydub).
 
 
 
