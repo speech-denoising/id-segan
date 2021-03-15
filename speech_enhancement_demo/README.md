@@ -4,19 +4,19 @@ Demo application for speech denoising algorithm.
 
 ## Running
 
-DSEGAN:
+**DSEGAN:**
 
 `
 python "speech_enhancement_demo/speech_enhancement_demo.py" -at dsegan -m "D:/DSEGAN-2/SEGAN-97000.meta" -i "data/noisy_signal.wav" -o "data/clean_signal_dsegan.wav" -depth 2
 `
 
-ISEGAN:
+**ISEGAN:**
 
 `
 python "speech_enhancement_demo/speech_enhancement_demo.py" -at isegan -m "D:/DSEGAN-2/SEGAN-97000.meta" -i "data/noisy_signal.wav" -o "data/clean_signal_isegan.wav" -iter 2
 `
 
-SEGAN:
+**SEGAN:**
 
 `
 python "speech_enhancement_demo/speech_enhancement_demo.py" -at segan -m "D:/DSEGAN-2/SEGAN-97000.meta" -i "data/noisy_signal.wav" -o "data/clean_signal_segan.wav"
