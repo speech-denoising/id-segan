@@ -26,7 +26,7 @@ python "speech_enhancement_demo/speech_enhancement_demo.py" -at segan -m "D:/DSE
 
 | key         |type |description | required |
 |-------------|---|---|---|
-| **-h**      |  | Help | |
+| **-h**      |  | Run the application with the -h option to see the usage message. | |
 | **-i**      | str | Noisy audio file to process. | true |
 | **-m**      | str | Path to a .meta file with a trained model. | true |
 | **-at**     | str | Type of the network, either 'dsegan' for deep SEGAN, 'isegan' for iterated SEGAN or 'segan' for SEGAN. | true |
