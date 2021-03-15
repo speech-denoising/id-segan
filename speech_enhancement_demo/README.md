@@ -1,6 +1,6 @@
 # Speech enhancement demo
 
-Example of running:
+## Example of running:
 
 DSEGAN:
 
