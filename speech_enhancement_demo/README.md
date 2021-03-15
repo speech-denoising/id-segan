@@ -24,7 +24,7 @@ python "speech_enhancement_demo/speech_enhancement_demo.py" -at segan -m "D:/DSE
 
 ## Arguments description
 
-| key   |type |description | required |
+| key        |type |description | required |
 |-------|---|---|---|
 | **-h**  |  | Help | |
 | **-i**  | str | Noisy audio file to process. | true |
