@@ -11,5 +11,4 @@ https://github.com/pquochuy/idsegan
 
 Letter:
 
-H. Phan, I. V. McLoughlin, L. Pham, O. Y. Chén, P. Koch, M. De Vos, and A. Mertins, "[_Improving GANs for Speech Enhancement_](https://arxiv.org/pdf/2001.05532.pdf)" 
-
+"[_Improving GANs for Speech Enhancement_](https://arxiv.org/pdf/2001.05532.pdf)", H. Phan, I. V. McLoughlin, L. Pham, O. Y. Chén, P. Koch, M. De Vos, and A. Mertins.
