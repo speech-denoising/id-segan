@@ -6,7 +6,7 @@ Example of running:
 `
 python "speech_enhancement_demo/speech_enhancement_demo.py" -at dsegan -m "D:/DSEGAN-2/SEGAN-97000.meta" -i "data/noisy_signal.wav" -o "data/clean_signal_dsegan.wav"
 `
-1. ISEGAN:
+2. ISEGAN:
 
 `
 python "speech_enhancement_demo/speech_enhancement_demo.py" -at isegan -m "D:/DSEGAN-2/SEGAN-97000.meta" -i "data/noisy_signal.wav" -o "data/clean_signal_isegan.wav"
