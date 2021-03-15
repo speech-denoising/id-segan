@@ -7,6 +7,14 @@ python "speech_enhancement_demo/speech_enhancement_demo.py" -at segan -m "D:/DSE
 
 ## Arguments description
 
+| type|name |description |
+|----|---|---|
+| *address* | _user | address of certificate owner |
+| *bytes32* | _hash | sha256 hash of the certificate text |
+
+
+
+
 |-h        | --help                                                                        |                                                         |
 |-i   | --input |  |
 |-m | --model |  |
