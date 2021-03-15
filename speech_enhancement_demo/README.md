@@ -44,11 +44,11 @@ The demo produces a noise-free audio recording as an output file.
 
 **Preprocessing:**
 
-Isegan, dsegan and segan models accept audio recording in .wav format with a sampling rate of 16kHz. Our demo accepts audio recording at any sample rate as input. File resampling up to 16kHz is performed using librosa package tools. The librosa.load function loads the audio file at the required sampling rate and performs normalization. Therefore, we removed a part of the code with normalization as unnecessary.
+Isegan, dsegan and segan models accept audio recording in .wav format with a sampling rate of 16kHz. Our demo accepts audio recording at any sample rate as input. File resampling up to 16kHz is performed using librosa package tools. [The librosa.load function](https://librosa.org/doc/main/generated/librosa.load.html) loads the audio file at the required sampling rate and performs normalization. Therefore, we removed a part of the code with normalization as unnecessary.
 
 **Postprocessing:**
 
-We have noticed that the output demo file is cleared of noise, but is very quiet, which made it difficult to assess the quality of the cleansing. In the postprocessing part, the audio volume is increased using the python package Pydub (https://github.com/jiaaro/pydub).
+We have noticed that the output demo file is cleared of noise, but is very quiet, which made it difficult to assess the quality of the cleansing. In the postprocessing part, the audio volume is increased using the python package [Pydub](https://github.com/jiaaro/pydub).
 
 
 
