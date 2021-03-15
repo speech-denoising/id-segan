@@ -1,6 +1,6 @@
 # Speech enhancement demo
 
-Demo application for speech denoising algorithm.
+Demo application for speech denoising model.
 
 ## Running
 
@@ -22,7 +22,7 @@ python "speech_enhancement_demo/speech_enhancement_demo.py" -at isegan -m "D:/DS
 python "speech_enhancement_demo/speech_enhancement_demo.py" -at segan -m "D:/DSEGAN-2/SEGAN-97000.meta" -i "data/noisy_signal.wav" -o "data/clean_signal_segan.wav"
 `
 
-> **NOTE**: Before running the demo, it is necessary to create a "data" folder inside the directory "id-segan" and and put there audio file, which needs to be cleared of noise.
+> **NOTE**: Before running the demo, it is necessary to create a "data" folder inside the directory "id-segan" and put there audio file, which will be cleared from noise.
 
 
 ## Arguments description
@@ -47,12 +47,8 @@ The demo produces a noise-free audio recording as an output file.
 
 **Preprocessing:**
 
-Isegan, dsegan and segan models accept audio recording in .wav format with a sampling rate of 16kHz. Our demo accepts audio recording at any sample rate as input. File resampling up to 16kHz is performed using librosa package tools. [The librosa.load function](https://librosa.org/doc/main/generated/librosa.load.html) loads the audio file at the required sampling rate and performs normalization. Therefore, we removed a part of the code with normalization as unnecessary.
+ISGEAN, DSEGAN and SEGAN models accept audio recording in .wav format with a sampling rate of 16kHz. Our demo accepts audio recording at any sample rate as input. File resampling up to 16kHz is performed using librosa package tools. [The librosa.load function](https://librosa.org/doc/main/generated/librosa.load.html) loads the audio file at the required sampling rate and performs normalization. Therefore, we removed a part of the code with normalization as unnecessary.
 
 **Postprocessing:**
 
-We have noticed that the output demo file is cleared of noise, but is very quiet, which made it difficult to assess the quality of the cleansing. In the postprocessing part, the audio volume is increased using the python package [Pydub](https://github.com/jiaaro/pydub).
-
-
-
-
+We have noticed that the output demo file is cleared of noise, but is very quiet, which made it difficult to assess the quality of the cleaning. In the postprocessing part, the audio volume is increased using the python package [Pydub](https://github.com/jiaaro/pydub).
