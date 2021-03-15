@@ -22,6 +22,9 @@ python "speech_enhancement_demo/speech_enhancement_demo.py" -at isegan -m "D:/DS
 python "speech_enhancement_demo/speech_enhancement_demo.py" -at segan -m "D:/DSEGAN-2/SEGAN-97000.meta" -i "data/noisy_signal.wav" -o "data/clean_signal_segan.wav"
 `
 
+> **NOTE**: Before running the demo, it is necessary to create a "data" folder inside the directory "id-segan" and and put there audio file, which needs to be cleared of noise.
+
+
 ## Arguments description
 
 | key         |type |description | required |
