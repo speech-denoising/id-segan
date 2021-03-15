@@ -7,20 +7,14 @@ python "speech_enhancement_demo/speech_enhancement_demo.py" -at segan -m "D:/DSE
 
 ## Arguments description
 
-| type|name |description |
+| key|type |description |
 |----|---|---|
-| *address* | _user | address of certificate owner |
-| *bytes32* | _hash | sha256 hash of the certificate text |
-
-
-
-
-|-h        | --help                                                                        |                                                         |
-|-i   | --input |  |
-|-m | --model |  |
-|-at |    |        |
-|-o |    --output    |  |
-|-depth |         ||
-|-iter |   --iterations   ||
-|-p |   --preemph   |   |
-|-d |   --device | |
+| -h |  | help |
+| -i | str | Noisy audio file to process. |
+| -m | str | Path to a .meta file with a trained model.t |
+| -at | str | Type of the network, either 'dsegan' for deep SEGAN, 'isegan' for iterated SEGAN or 'segan' for SEGAN. |
+| -o | str |  |
+| -depth | int |  |
+| -iter | int | |
+| -p | float |  |
+| -d | str |  |
